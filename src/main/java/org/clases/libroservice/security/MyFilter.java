@@ -1,6 +1,7 @@
 package org.clases.libroservice.security;
 
 import java.io.IOException;
+import java.util.Base64;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,8 @@ public class MyFilter extends OncePerRequestFilter {
     String auth=httpServletRequest.getHeader("Authorization");
 
     if(null!=auth && auth.startsWith("Basic ")) {
-      auth = auth.substring(6);
+
+      auth = new String(Base64.getDecoder().decode(auth.substring(6)));
       String[] credentials = auth.split(":");
       Authentication authentication = new UsernamePasswordAuthenticationToken(credentials[0],
           credentials[1]);

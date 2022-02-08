@@ -1,6 +1,7 @@
 package org.clases.libroservice.controller;
 
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.clases.libroservice.model.LibroVO;
 import org.clases.libroservice.service.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/libros")
+@SecurityRequirement(name = "mySecConfig")
 public class LibroController {
 
   @Autowired
